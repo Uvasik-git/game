@@ -12,6 +12,7 @@ players = [Player(100, 200), Enemy(500, 300)]
 clock = pygame.time.Clock()
 
 running = True
+game_over = False
 
 while running:
 
@@ -30,6 +31,11 @@ while running:
     if players[0].rect.colliderect(players[1].rect):
         players[0].health -= 10
         print("Boom")
+
+    if players[0].health <= 0:
+        game_over = True
+        running = False
+
 
     for sprite in players:
         sprite.draw(screen)
