@@ -7,6 +7,8 @@ pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
 players = [Player(100, 200), Enemy(500, 300)]
+# player_1 = players[0]
+# enemy_1 = players[1]
 clock = pygame.time.Clock()
 
 running = True
@@ -24,6 +26,9 @@ while running:
 
     for sprite in players:
         sprite.update(keys, dt)
+
+    if players[0].rect.colliderect(players[1].rect):
+        print("Boom")
 
     for sprite in players:
         sprite.draw(screen)
