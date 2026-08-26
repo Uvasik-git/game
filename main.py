@@ -28,6 +28,7 @@ while running:
         sprite.update(keys, dt)
 
     if players[0].rect.colliderect(players[1].rect):
+        players[0].health -= 10
         print("Boom")
 
     for sprite in players:

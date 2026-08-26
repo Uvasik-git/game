@@ -7,6 +7,7 @@ class Player(GameObject):
         super().__init__(x, y)
         self.color = (36, 60, 130)
         self.speed = 300
+        self.health = 100
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
