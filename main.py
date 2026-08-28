@@ -10,6 +10,7 @@ players = [Player(100, 200), Enemy(500, 300)]
 # player_1 = players[0]
 # enemy_1 = players[1]
 clock = pygame.time.Clock()
+font = pygame.font.Font(None, 36)
 
 running = True
 game_over = False
@@ -40,6 +41,9 @@ while running:
 
     for sprite in players:
         sprite.draw(screen)
+
+    health_text = font.render(f"Здоровье: {players[0].health}", True, (255, 255, 255))
+    screen.blit(health_text, (20, 20))
 
     pygame.display.flip()
 
