@@ -13,6 +13,7 @@ clock = pygame.time.Clock()
 
 running = True
 game_over = False
+last_damage_time = 0
 
 while running:
 
@@ -22,20 +23,20 @@ while running:
 
     keys = pygame.key.get_pressed()
     dt = clock.tick(60) / 1000
-
+    current_time = pygame.time.get_ticks()
     screen.fill((23, 45, 68))
 
-    for sprite in players:
-        sprite.update(keys, dt)
+    if not game_over:
+        for sprite in players:
+            sprite.update(keys, dt)
 
-    if players[0].rect.colliderect(players[1].rect):
-        players[0].health -= 10
-        print("Boom")
+        if players[0].rect.colliderect(players[1].rect) and current_time - last_damage_time >= 1000:
+            players[0].health -= 10
+            last_damage_time = current_time
+            print("Boom")
 
-    if players[0].health <= 0:
-        game_over = True
-        running = False
-
+        if players[0].health <= 0:
+            game_over = True
 
     for sprite in players:
         sprite.draw(screen)
